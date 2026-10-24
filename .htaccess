@@ -1,0 +1,4 @@
+Options -Indexes
+RedirectMatch 404 ^/(src|data)/
+RedirectMatch 404 ^/(README|HANDOFF)\.md$
+RedirectMatch 404 /\.git
