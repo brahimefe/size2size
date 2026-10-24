@@ -3,141 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Yok artık!</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik+Mono+One&family=Hanken+Grotesk:wght@500;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@500&display=swap">
+<title>size2size.com satılıktır</title>
+<meta name="description" content="size2size.com alan adı satılıktır. This domain is for sale.">
+<meta name="robots" content="noindex">
 <style>
-/* Layout follows a publication front page: tagline left, sticker wordmark centre, sticker buttons right;
-   a large author introduction; then numbered story cards on colour panels. */
-:root {
-  --bg: #1A1A1A;
-  --ink: #F2F2F0;
-  --muted: #A7A7A2;
-  --line: rgba(242, 242, 240, 0.22);
-  --guess: #FF6B1A;
-  --record: #2445F0;
-  --dot: #5B5F68;
-  --sans: 'Hanken Grotesk', system-ui, sans-serif;
-  --serif: 'Newsreader', Georgia, serif;
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
-  color-scheme: dark;
-}
+:root { --bg: #1A1A1A; --ink: #F2F2F0; --muted: #A7A7A2; --line: rgba(242, 242, 240, 0.22); --accent: #FF6B1A; color-scheme: dark; }
 * { box-sizing: border-box; }
-html, body { margin: 0; background: var(--bg); color: var(--ink); }
-body { font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-a { color: inherit; }
-.wrap { width: min(1280px, 100% - 32px); margin-inline: auto; }
-@media (min-width: 760px) { .wrap { width: min(1280px, 100% - 120px); } }
-
-/* ---------- top bar ---------- */
-.bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding-block: 18px 0; }
-.tagline { font-size: 1rem; font-weight: 500; margin: 0; }
-.wordmark { font-family: 'Lobster', cursive; font-size: clamp(3rem, 8vw, 5.4rem); line-height: 1; color: #fff; text-decoration: none; display: inline-block; transform: rotate(-4deg); padding: 6px 10px 14px;
-  -webkit-text-stroke: 3px #111; paint-order: stroke fill;
-  filter: drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(4px 5px 0 #111); }
-.actions { display: flex; justify-content: flex-end; gap: 14px; }
-.sticker { font-family: 'Rubik Mono One', sans-serif; font-size: 0.86rem; text-decoration: none; color: #111; background: #fff; border-radius: 999px; padding: 8px 16px 7px; box-shadow: 0 0 0 2px #111 inset, 0 0 0 3px #fff; white-space: nowrap; }
-.sticker.about { transform: rotate(-3deg); }
-.sticker.join { transform: rotate(2deg); border-radius: 10px; display: inline-flex; align-items: center; gap: 8px; }
-.sticker.join svg { width: 18px; height: 18px; }
-
-/* ---------- author intro ---------- */
-.intro { padding-block: clamp(56px, 10vw, 120px) clamp(56px, 8vw, 100px); }
-.intro h1 { font-family: var(--sans); font-weight: 800; font-size: clamp(2.8rem, 7vw, 5.4rem); letter-spacing: -0.02em; line-height: 1; margin: 0 0 30px; }
-.intro p { font-family: var(--serif); font-size: clamp(1.4rem, 3.2vw, 2.55rem); line-height: 1.32; margin: 0 0 22px; max-width: 46ch; letter-spacing: -0.005em; }
-.intro p a { text-underline-offset: 0.14em; text-decoration-thickness: 2px; }
-
-/* ---------- stories ---------- */
-.section-h { font-family: var(--sans); font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 40px; }
-.stories { display: grid; gap: 44px 40px; grid-template-columns: 1fr; padding-bottom: 96px; }
-@media (min-width: 720px) { .stories { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1080px) { .stories { grid-template-columns: repeat(3, 1fr); } }
-.card { text-decoration: none; display: block; min-width: 0; }
-.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-family: var(--mono); font-size: 1rem; }
-.num { border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 12px; }
-.panel { aspect-ratio: 4 / 3; display: grid; place-items: center; padding: 14% 12% 0; overflow: hidden; }
-.panel .screen { width: 100%; height: 100%; background: #0F1626; border-radius: 4px 4px 0 0; position: relative; overflow: hidden; }
-.panel canvas { width: 100%; height: 100%; display: block; }
-.card h3 { font-family: var(--sans); font-weight: 800; font-size: 1.55rem; line-height: 1.12; margin: 18px 0 8px; letter-spacing: -0.01em; }
-.card p { font-family: var(--serif); font-size: 1.15rem; line-height: 1.4; color: var(--muted); margin: 0; }
-.card:hover h3 { text-decoration: underline; text-underline-offset: 0.12em; }
-.card.soon { pointer-events: none; }
-.card.soon .panel { background: transparent; border: 1.5px dashed var(--line); }
-.card.soon .num { border-style: dashed; color: var(--muted); border-color: var(--muted); }
-.card.soon h3 { color: var(--muted); }
-
-footer { border-top: 1px solid var(--line); padding-block: 26px 56px; font-size: 0.9rem; color: var(--muted); }
-
-/* phone: tagline moves under the wordmark */
-@media (max-width: 719px) {
-  .bar { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 10px; }
-  .wordmark { order: -1; }
-  .actions { justify-content: center; }
-}
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); }
+body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; display: grid; place-items: center; padding: 32px 16px; -webkit-font-smoothing: antialiased; }
+main { width: min(720px, 100%); }
+.domain { font-weight: 800; font-size: clamp(2.6rem, 11vw, 5.6rem); letter-spacing: -0.03em; line-height: 1; margin: 0 0 18px; overflow-wrap: anywhere; }
+.domain span { color: var(--accent); }
+.tr { font-size: clamp(1.3rem, 4vw, 2rem); margin: 0 0 6px; }
+.en { font-size: clamp(1rem, 3vw, 1.3rem); color: var(--muted); margin: 0 0 36px; }
+.contact { border-top: 1px solid var(--line); padding-top: 24px; }
+.contact p { margin: 0 0 14px; color: var(--muted); }
+.btn { display: inline-block; background: var(--ink); color: var(--bg); font-weight: 700; text-decoration: none; border-radius: 999px; padding: 12px 22px; overflow-wrap: anywhere; }
+.btn:hover { background: var(--accent); color: #111; }
 </style>
 </head>
 <body>
-
-<div class="wrap">
-  <header class="bar">
-    <p class="tagline">i.e. yani…</p>
-    <a class="wordmark" href="/">Yok artık!</a>
-    <nav class="actions" aria-label="Ana menü">
-      <a class="sticker about" href="#hakkinda">HAKKINDA</a>
-      <a class="sticker join" href="#kayit">KAYIT OL
-        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 21 3l-6 18-4-8-8-2Z"/><path d="m11 13 10-10"/></svg>
-      </a>
-    </nav>
-  </header>
-
-  <section class="intro" id="hakkinda">
-    <h1>İbrahim Efe</h1>
-    <p>İbn Haldun Üniversitesi'nde hoca. Hikâye anlatmayı ve araştırma yapmayı çok sever. Bu sayfada Türkiye'deki, özellikle İstanbul'daki insanları sayılarla anlatıyor: önce siz tahmin ediyorsunuz, sonra kayıtlara bakıyoruz.</p>
-  </section>
-
-  <main>
-    <h2 class="section-h">Hikâyeler</h2>
-    <div class="stories">
-      <a class="card" href="kac-suriyeli/">
-        <div class="card-top"><span class="num">#1</span><span>EKİM 2026</span></div>
-        <div class="panel" style="background:#FF6B1A"><div class="screen"><canvas id="thumb-1" aria-hidden="true"></canvas></div></div>
-        <h3>İstanbul'da her 100 kişiden kaçı Suriyeli?</h3>
-        <p>Önce tahmin edin, sonra Göç İdaresi kayıtlarıyla karşılaştırın.</p>
-      </a>
-      <div class="card soon" aria-label="Yakında">
-        <div class="card-top"><span class="num">#2</span><span>YAKINDA</span></div>
-        <div class="panel"></div>
-        <h3>Karşıya geçenler</h3>
-        <p>Her sabah Boğaz'ı kaç kişi, nasıl geçiyor?</p>
-      </div>
-      <div class="card soon" aria-label="Yakında">
-        <div class="card-top"><span class="num">#3</span><span>YAKINDA</span></div>
-        <div class="panel"></div>
-        <h3>İstanbul'un bir günü</h3>
-        <p>Saat saat: uyku, iş, yol ve ekran.</p>
-      </div>
-    </div>
-  </main>
-
-  <footer>Türkçe · English (yakında)</footer>
-</div>
-
+<main>
+  <h1 class="domain">size<span>2</span>size.com</h1>
+  <p class="tr">Bu alan adı satılıktır.</p>
+  <p class="en">This domain is for sale.</p>
+  <div class="contact">
+    <p>Teklif ve iletişim için / For offers and enquiries:</p>
+    <a class="btn" id="mail" href="#">efeibrahimefe [at] googlemail.com</a>
+  </div>
+</main>
 <script>
-/* card 1 thumbnail: 1,000 dots, 24 of them blue (the record), a ring of orange guesses */
-function rng(s) { return () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-function drawThumb() {
-  const cv = document.getElementById('thumb-1'), d = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight;
-  cv.width = w * d; cv.height = h * d; const c = cv.getContext('2d'); c.setTransform(d, 0, 0, d, 0, 0);
-  const n = 1000, cols = 40, rows = 25, gap = Math.min(w / (cols + 2), h / (rows + 2));
-  const ox = (w - gap * (cols - 1)) / 2, oy = (h - gap * (rows - 1)) / 2, r = rng(7);
-  const rings = new Set(); while (rings.size < 90) rings.add(Math.floor(r() * n));
-  for (let i = 0; i < n; i++) {
-    const x = ox + (i % cols) * gap, y = oy + Math.floor(i / cols) * gap, blue = (i * 24) % 1000 < 24;
-    c.beginPath(); c.arc(x, y, gap * 0.32, 0, 6.283); c.fillStyle = blue ? '#6F8CFF' : '#2E3849'; c.fill();
-    if (rings.has(i)) { c.lineWidth = Math.max(1, gap * 0.13); c.strokeStyle = '#FF8A3D'; c.beginPath(); c.arc(x, y, gap * 0.45, 0, 6.283); c.stroke(); }
-  }
-}
-addEventListener('resize', drawThumb); drawThumb();
+/* the address is assembled in the browser so simple scrapers do not pick it up */
+(function () {
+  var u = 'efeibrahimefe', d = 'googlemail.com', a = document.getElementById('mail');
+  a.href = 'mailto:' + u + '@' + d + '?subject=' + encodeURIComponent('size2size.com');
+  a.textContent = u + '@' + d;
+})();
 </script>
 </body>
 </html>
