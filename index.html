@@ -3,251 +3,141 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>16 Milyon</title>
+<title>Yok artık!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik+Mono+One&family=Hanken+Grotesk:wght@500;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: the home page is the city itself. A full-width field of dots (one per ~16,000 Istanbulites) sits behind
-   a giant population figure; below it, each story is a card whose thumbnail is drawn from its own data.
-   Same two voices as the stories: orange for readers' guesses, blue for the records. */
+/* Layout follows a publication front page: tagline left, sticker wordmark centre, sticker buttons right;
+   a large author introduction; then numbered story cards on colour panels. */
 :root {
-  --bg: #ECEFF3;
-  --ink: #0F1626;
-  --muted: #5A6577;
-  --dot: #C2C9D3;
-  --card: #FFFFFF;
-  --card-edge: rgba(15, 22, 38, 0.10);
+  --bg: #1A1A1A;
+  --ink: #F2F2F0;
+  --muted: #A7A7A2;
+  --line: rgba(242, 242, 240, 0.22);
   --guess: #FF6B1A;
   --record: #2445F0;
-  --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
-  --body: 'Hanken Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --dot: #5B5F68;
+  --sans: 'Hanken Grotesk', system-ui, sans-serif;
+  --serif: 'Newsreader', Georgia, serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0C111C; --ink: #EEF1F6; --muted: #9AA5B6; --dot: #2E3849; --card: #161D2B; --card-edge: rgba(255,255,255,0.08);
-    --guess: #FF8A3D; --record: #6F8CFF; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0C111C; --ink: #EEF1F6; --muted: #9AA5B6; --dot: #2E3849; --card: #161D2B; --card-edge: rgba(255,255,255,0.08);
-  --guess: #FF8A3D; --record: #6F8CFF; color-scheme: dark;
-}
-
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 1.08rem; line-height: 1.55; font-variant-numeric: tabular-nums; }
-.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: inherit; }
-:focus-visible { outline: 3px solid var(--record); outline-offset: 3px; border-radius: 4px; }
+.wrap { width: min(1280px, 100% - 32px); margin-inline: auto; }
+@media (min-width: 760px) { .wrap { width: min(1280px, 100% - 120px); } }
 
 /* ---------- top bar ---------- */
-.bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
-.logo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; }
-.logo .mark { display: grid; grid-template-columns: repeat(3, 6px); gap: 3px; }
-.logo .mark i { width: 6px; height: 6px; border-radius: 50%; background: var(--dot); }
-.logo .mark i.b { background: var(--record); }
-.logo .mark i.o { background: var(--guess); }
-.bar nav { display: flex; gap: 22px; font-family: var(--display); font-weight: 700; font-size: 0.95rem; }
-.bar nav a { text-decoration: none; color: var(--muted); }
-.bar nav a:hover { color: var(--ink); }
+.bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding-block: 18px 0; }
+.tagline { font-size: 1rem; font-weight: 500; margin: 0; }
+.wordmark { font-family: 'Lobster', cursive; font-size: clamp(3rem, 8vw, 5.4rem); line-height: 1; color: #fff; text-decoration: none; display: inline-block; transform: rotate(-4deg); padding: 6px 10px 14px;
+  -webkit-text-stroke: 3px #111; paint-order: stroke fill;
+  filter: drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(4px 5px 0 #111); }
+.actions { display: flex; justify-content: flex-end; gap: 14px; }
+.sticker { font-family: 'Rubik Mono One', sans-serif; font-size: 0.86rem; text-decoration: none; color: #111; background: #fff; border-radius: 999px; padding: 8px 16px 7px; box-shadow: 0 0 0 2px #111 inset, 0 0 0 3px #fff; white-space: nowrap; }
+.sticker.about { transform: rotate(-3deg); }
+.sticker.join { transform: rotate(2deg); border-radius: 10px; display: inline-flex; align-items: center; gap: 8px; }
+.sticker.join svg { width: 18px; height: 18px; }
 
-/* ---------- hero ---------- */
-.hero { position: relative; padding-block: 40px 70px; }
-.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
-.hero-text { position: relative; z-index: 1; max-width: 760px; }
-.count { font-family: var(--display); font-weight: 800; font-size: clamp(3.6rem, 13vw, 10.5rem); line-height: 0.88; letter-spacing: -0.055em; margin: 0; }
-.count-sub { font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.6rem); line-height: 1.05; letter-spacing: -0.025em; margin: 14px 0 26px; max-width: 18ch; text-wrap: balance; }
-.hero p.lede { font-size: clamp(1.08rem, 2vw, 1.28rem); color: var(--muted); max-width: 44ch; margin: 0; background: color-mix(in srgb, var(--bg) 82%, transparent); }
-.hero-src { position: relative; z-index: 1; font-size: 0.82rem; color: var(--muted); margin-top: 26px; }
+/* ---------- author intro ---------- */
+.intro { padding-block: clamp(56px, 10vw, 120px) clamp(56px, 8vw, 100px); }
+.intro h1 { font-family: var(--sans); font-weight: 800; font-size: clamp(2.8rem, 7vw, 5.4rem); letter-spacing: -0.02em; line-height: 1; margin: 0 0 30px; }
+.intro p { font-family: var(--serif); font-size: clamp(1.4rem, 3.2vw, 2.55rem); line-height: 1.32; margin: 0 0 22px; max-width: 46ch; letter-spacing: -0.005em; }
+.intro p a { text-underline-offset: 0.14em; text-decoration-thickness: 2px; }
 
 /* ---------- stories ---------- */
-.section-h { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 3.6vw, 2.3rem); letter-spacing: -0.03em; margin: 0 0 22px; }
-.stories { display: grid; gap: 20px; grid-template-columns: 1fr; padding-bottom: 72px; }
-@media (min-width: 900px) { .stories { grid-template-columns: 1.6fr 1fr; grid-template-rows: auto auto auto; } .feature { grid-row: span 3; } }
+.section-h { font-family: var(--sans); font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 40px; }
+.stories { display: grid; gap: 44px 40px; grid-template-columns: 1fr; padding-bottom: 96px; }
+@media (min-width: 720px) { .stories { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1080px) { .stories { grid-template-columns: repeat(3, 1fr); } }
+.card { text-decoration: none; display: block; min-width: 0; }
+.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-family: var(--mono); font-size: 1rem; }
+.num { border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px 12px; }
+.panel { aspect-ratio: 4 / 3; display: grid; place-items: center; padding: 14% 12% 0; overflow: hidden; }
+.panel .screen { width: 100%; height: 100%; background: #0F1626; border-radius: 4px 4px 0 0; position: relative; overflow: hidden; }
+.panel canvas { width: 100%; height: 100%; display: block; }
+.card h3 { font-family: var(--sans); font-weight: 800; font-size: 1.55rem; line-height: 1.12; margin: 18px 0 8px; letter-spacing: -0.01em; }
+.card p { font-family: var(--serif); font-size: 1.15rem; line-height: 1.4; color: var(--muted); margin: 0; }
+.card:hover h3 { text-decoration: underline; text-underline-offset: 0.12em; }
+.card.soon { pointer-events: none; }
+.card.soon .panel { background: transparent; border: 1.5px dashed var(--line); }
+.card.soon .num { border-style: dashed; color: var(--muted); border-color: var(--muted); }
+.card.soon h3 { color: var(--muted); }
 
-.feature { display: grid; text-decoration: none; background: var(--card); border: 1px solid var(--card-edge); border-radius: 18px; overflow: hidden; min-width: 0; box-shadow: 0 22px 44px -30px rgba(15, 22, 38, 0.5); transition: transform 180ms ease; }
-.feature:hover { transform: translateY(-3px); }
-.feature canvas { width: 100%; height: 280px; display: block; background: var(--bg); }
-.feature .body { padding: 24px 26px 26px; }
-.badge { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 0.78rem; border-radius: 999px; padding: 4px 11px; margin-bottom: 14px; }
-.badge.new { background: var(--guess); color: #fff; }
-.badge.soon { border: 1px dashed var(--muted); color: var(--muted); }
-.feature h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 3.6vw, 2.5rem); line-height: 1; letter-spacing: -0.035em; margin: 0 0 12px; text-wrap: balance; }
-.feature h3 em { font-style: normal; color: var(--record); }
-.feature p { margin: 0 0 16px; color: var(--muted); max-width: 52ch; }
-.meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.86rem; color: var(--muted); }
-.go { font-family: var(--display); font-weight: 800; color: var(--ink); display: inline-flex; gap: 8px; align-items: center; margin-top: 18px; }
-.go span { width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: var(--bg); display: inline-grid; place-items: center; }
+footer { border-top: 1px solid var(--line); padding-block: 26px 56px; font-size: 0.9rem; color: var(--muted); }
 
-.soon-card { border: 1.5px dashed var(--card-edge); border-color: color-mix(in srgb, var(--muted) 45%, transparent); border-radius: 18px; padding: 22px 24px; min-width: 0; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 18px; align-items: center; }
-.soon-card canvas { width: 64px; height: 64px; }
-.soon-card h4 { font-family: var(--display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.015em; margin: 4px 0 4px; line-height: 1.15; }
-.soon-card p { margin: 0; font-size: 0.93rem; color: var(--muted); }
-
-/* ---------- how ---------- */
-.how { border-top: 1px solid var(--card-edge); padding-block: 64px; display: grid; gap: 28px; }
-@media (min-width: 820px) { .how { grid-template-columns: 1.1fr 2fr; } }
-.how .section-h { margin: 0; }
-.rules { display: grid; gap: 22px; }
-@media (min-width: 620px) { .rules { grid-template-columns: repeat(3, 1fr); } }
-.rule .ico { display: flex; gap: 4px; margin-bottom: 12px; }
-.rule .ico i { width: 10px; height: 10px; border-radius: 50%; background: var(--dot); }
-.rule .ico i.o { background: var(--guess); }
-.rule .ico i.b { background: var(--record); }
-.rule h4 { font-family: var(--display); font-weight: 700; font-size: 1.12rem; margin: 0 0 6px; }
-.rule p { margin: 0; color: var(--muted); font-size: 0.97rem; }
-
-footer { border-top: 1px solid var(--card-edge); padding-block: 28px 56px; font-size: 0.88rem; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
-.mock { position: fixed; z-index: 20; right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); font-family: var(--display); font-weight: 700; font-size: 0.78rem; background: var(--ink); color: var(--bg); border-radius: 999px; padding: 6px 12px; }
-@media (prefers-reduced-motion: reduce) { .feature { transition: none; } }
+/* phone: tagline moves under the wordmark */
+@media (max-width: 719px) {
+  .bar { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 10px; }
+  .wordmark { order: -1; }
+  .actions { justify-content: center; }
+}
 </style>
 </head>
 <body>
 
 <div class="wrap">
   <header class="bar">
-    <a class="logo" href="/" aria-label="16 Milyon ana sayfa">
-      <span class="mark" aria-hidden="true"><i></i><i class="b"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i></span>16 Milyon
-    </a>
-    <nav aria-label="Ana menü"><a href="#hikayeler">Hikâyeler</a><a href="#nasil">Nasıl çalışıyor</a></nav>
+    <p class="tagline">i.e. yani…</p>
+    <a class="wordmark" href="/">Yok artık!</a>
+    <nav class="actions" aria-label="Ana menü">
+      <a class="sticker about" href="#hakkinda">HAKKINDA</a>
+      <a class="sticker join" href="#kayit">KAYIT OL
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 21 3l-6 18-4-8-8-2Z"/><path d="m11 13 10-10"/></svg>
+      </a>
+    </nav>
   </header>
+
+  <section class="intro" id="hakkinda">
+    <h1>İbrahim Efe</h1>
+    <p>İbn Haldun Üniversitesi'nde hoca. Hikâye anlatmayı ve araştırma yapmayı çok sever. Bu sayfada Türkiye'deki, özellikle İstanbul'daki insanları sayılarla anlatıyor: önce siz tahmin ediyorsunuz, sonra kayıtlara bakıyoruz.</p>
+  </section>
+
+  <main>
+    <h2 class="section-h">Hikâyeler</h2>
+    <div class="stories">
+      <a class="card" href="kac-suriyeli/">
+        <div class="card-top"><span class="num">#1</span><span>EKİM 2026</span></div>
+        <div class="panel" style="background:#FF6B1A"><div class="screen"><canvas id="thumb-1" aria-hidden="true"></canvas></div></div>
+        <h3>İstanbul'da her 100 kişiden kaçı Suriyeli?</h3>
+        <p>Önce tahmin edin, sonra Göç İdaresi kayıtlarıyla karşılaştırın.</p>
+      </a>
+      <div class="card soon" aria-label="Yakında">
+        <div class="card-top"><span class="num">#2</span><span>YAKINDA</span></div>
+        <div class="panel"></div>
+        <h3>Karşıya geçenler</h3>
+        <p>Her sabah Boğaz'ı kaç kişi, nasıl geçiyor?</p>
+      </div>
+      <div class="card soon" aria-label="Yakında">
+        <div class="card-top"><span class="num">#3</span><span>YAKINDA</span></div>
+        <div class="panel"></div>
+        <h3>İstanbul'un bir günü</h3>
+        <p>Saat saat: uyku, iş, yol ve ekran.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>Türkçe · English (yakında)</footer>
 </div>
 
-<section class="hero">
-  <canvas id="field" aria-hidden="true"></canvas>
-  <div class="wrap">
-    <div class="hero-text">
-      <p class="count" id="count">15.754.053</p>
-      <p class="count-sub">kişi İstanbul'da yaşıyor.</p>
-      <p class="lede">Bu sitede her hikâye, bu kalabalığın bir kısmını sayıyor. Önce siz tahmin ediyorsunuz, sonra kayıtlara bakıyoruz.</p>
-    </div>
-  </div>
-</section>
-
-<main class="wrap" id="hikayeler">
-  <h2 class="section-h">Hikâyeler</h2>
-  <div class="stories">
-    <a class="feature" href="kac-suriyeli/">
-      <canvas id="thumb-1" aria-hidden="true"></canvas>
-      <div class="body">
-        <span class="badge new">Yeni</span>
-        <h3>İstanbul'da her 100 kişiden kaçı <em>Suriyeli?</em></h3>
-        <p>Tahmininizi verin, sonra Göç İdaresi kayıtlarıyla karşılaştırın. İstanbul'dan başlayıp 81 ilin hepsine uzanan bir hikâye.</p>
-        <div class="meta"><span>Göç İdaresi Başkanlığı verisi</span><span>Ekim 2026</span><span>5 dakika</span></div>
-        <span class="go">Hikâyeye başla <span aria-hidden="true">→</span></span>
-      </div>
-    </a>
-
-    <div class="soon-card">
-      <canvas class="mini" data-kind="cross" aria-hidden="true"></canvas>
-      <div><span class="badge soon">Yakında</span><h4>Karşıya geçenler</h4><p>Her sabah Boğaz'ı kaç kişi, nasıl geçiyor?</p></div>
-    </div>
-    <div class="soon-card">
-      <canvas class="mini" data-kind="day" aria-hidden="true"></canvas>
-      <div><span class="badge soon">Yakında</span><h4>İstanbul'un bir günü</h4><p>Saat saat: uyku, iş, yol ve ekran.</p></div>
-    </div>
-    <div class="soon-card">
-      <canvas class="mini" data-kind="names" aria-hidden="true"></canvas>
-      <div><span class="badge soon">Yakında</span><h4>Alya ve Alparslan</h4><p>Bebeklere verilen isimler nereden geliyor?</p></div>
-    </div>
-  </div>
-</main>
-
-<section class="wrap" id="nasil">
-  <div class="how">
-    <h2 class="section-h">Nasıl çalışıyor</h2>
-    <div class="rules">
-      <div class="rule"><div class="ico" aria-hidden="true"><i class="o"></i><i></i><i></i></div><h4>Önce siz tahmin edin</h4><p>Her hikâye bir soruyla başlar. Cevabı görmeden önce kendi tahmininizi verirsiniz.</p></div>
-      <div class="rule"><div class="ico" aria-hidden="true"><i class="b"></i><i></i><i></i></div><h4>Her sayının bir kaynağı var</h4><p>Veriler resmî kayıtlardan ve açık veri portallarından gelir. Kaynak her sayfanın sonunda yazar.</p></div>
-      <div class="rule"><div class="ico" aria-hidden="true"><i></i><i class="b"></i><i class="o"></i></div><h4>Ortalamalar değil, insanlar</h4><p>Her nokta gerçek insanları temsil eder. Bir noktanın kaç kişi olduğunu her zaman söyleriz.</p></div>
-    </div>
-  </div>
-  <footer>
-    <span>16 Milyon · İstanbul'u verilerle anlatan hikâyeler. Hazırlayan: İbrahim Efe.</span>
-    <span>Türkçe · <span title="Hazırlanıyor">English (yakında)</span></span>
-  </footer>
-</section>
-<span class="mock">Taslak</span>
-
 <script>
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
-let C = {};
-const readC = () => { C = { dot: css('--dot'), g: css('--guess'), b: css('--record'), bg: css('--bg') }; };
-readC();
-function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-function fit(cv) { const d = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight; cv.width = w * d; cv.height = h * d; const c = cv.getContext('2d'); c.setTransform(d, 0, 0, d, 0, 0); return { c, w, h }; }
-
-/* hero: 1,000 dots drifting on the right; a few light up in turn, like readers guessing */
-const field = document.getElementById('field');
-let F = [], lit = [];
-function initField() {
-  const { w, h } = fit(field), r = rng(16), n = 1000, narrow = w < 760;
-  const x0 = narrow ? 0 : w * 0.48, cols = narrow ? 34 : 38, rows = Math.ceil(n / cols);
-  const gap = Math.min((w - x0) / cols, h / rows);
-  const ox = x0 + ((w - x0) - gap * (cols - 1)) / 2, oy = (h - gap * (rows - 1)) / 2;
-  F = Array.from({ length: n }, (_, i) => ({ bx: ox + (i % cols) * gap, by: oy + Math.floor(i / cols) * gap, ph: r() * 6.28, rad: gap * 0.32, lit: 0, col: 0 }));
-  /* 24 record dots in blue, fixed, as in the first story */
-  for (let k = 0; k < 24; k++) F[Math.floor((k + 0.5) * n / 24)].col = 2;
-}
-let tick = 0;
-function drawField() {
-  const { c, w, h } = { c: field.getContext('2d'), w: field.clientWidth, h: field.clientHeight };
-  c.clearRect(0, 0, w, h);
-  const narrow = w < 760;
-  F.forEach((d, i) => {
-    const wob = reduce ? 0 : Math.sin(tick / 60 + d.ph) * d.rad * 0.25;
-    c.globalAlpha = narrow ? 0.45 : 1;
-    c.beginPath(); c.arc(d.bx, d.by + wob, d.rad, 0, 6.283);
-    c.fillStyle = d.col === 2 ? C.b : C.dot; c.fill();
-    if (d.lit > 0.02) { c.globalAlpha = (narrow ? 0.45 : 1) * d.lit; c.lineWidth = Math.max(1.4, d.rad * 0.5); c.strokeStyle = C.g; c.beginPath(); c.arc(d.bx, d.by + wob, d.rad + c.lineWidth * 0.6, 0, 6.283); c.stroke(); }
-    d.lit *= 0.985;
-  });
-  c.globalAlpha = 1;
-  if (!reduce && tick % 9 === 0) F[Math.floor(Math.random() * F.length)].lit = 1;
-  tick++;
-  if (!reduce) requestAnimationFrame(drawField);
-}
-
-/* story 1 thumbnail: the 24 blue dots among 1,000 */
+/* card 1 thumbnail: 1,000 dots, 24 of them blue (the record), a ring of orange guesses */
+function rng(s) { return () => { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 function drawThumb() {
-  const { c, w, h } = fit(document.getElementById('thumb-1'));
-  const n = 1000, cols = 50, rows = 20, gap = Math.min(w / (cols + 2), h / (rows + 2));
+  const cv = document.getElementById('thumb-1'), d = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight;
+  cv.width = w * d; cv.height = h * d; const c = cv.getContext('2d'); c.setTransform(d, 0, 0, d, 0, 0);
+  const n = 1000, cols = 40, rows = 25, gap = Math.min(w / (cols + 2), h / (rows + 2));
   const ox = (w - gap * (cols - 1)) / 2, oy = (h - gap * (rows - 1)) / 2, r = rng(7);
-  const rings = new Set(); while (rings.size < 100) rings.add(Math.floor(r() * n));
+  const rings = new Set(); while (rings.size < 90) rings.add(Math.floor(r() * n));
   for (let i = 0; i < n; i++) {
     const x = ox + (i % cols) * gap, y = oy + Math.floor(i / cols) * gap, blue = (i * 24) % 1000 < 24;
-    c.beginPath(); c.arc(x, y, gap * 0.33, 0, 6.283); c.fillStyle = blue ? C.b : C.dot; c.fill();
-    if (rings.has(i)) { c.lineWidth = Math.max(1.2, gap * 0.14); c.strokeStyle = C.g; c.beginPath(); c.arc(x, y, gap * 0.45, 0, 6.283); c.stroke(); }
+    c.beginPath(); c.arc(x, y, gap * 0.32, 0, 6.283); c.fillStyle = blue ? '#6F8CFF' : '#2E3849'; c.fill();
+    if (rings.has(i)) { c.lineWidth = Math.max(1, gap * 0.13); c.strokeStyle = '#FF8A3D'; c.beginPath(); c.arc(x, y, gap * 0.45, 0, 6.283); c.stroke(); }
   }
 }
-
-/* coming-soon icons drawn from dots */
-function drawMinis() {
-  document.querySelectorAll('canvas.mini').forEach(cv => {
-    const { c, w, h } = fit(cv), k = cv.dataset.kind;
-    c.fillStyle = C.dot;
-    const dot = (x, y, r, col) => { c.beginPath(); c.arc(x, y, r, 0, 6.283); c.fillStyle = col || C.dot; c.fill(); };
-    if (k === 'cross') { for (let i = 0; i < 6; i++) for (let j = 0; j < 6; j++) dot(8 + i * 9 + (i > 2 ? 6 : 0), 8 + j * 9.6, 3, i === 2 && j % 2 ? C.b : null); c.fillStyle = C.b; c.fillRect(w / 2 - 1, 2, 2, h - 4); }
-    if (k === 'day') { for (let i = 0; i < 24; i++) { const a = i / 24 * 6.283 - 1.57; dot(w / 2 + Math.cos(a) * 24, h / 2 + Math.sin(a) * 24, 3, i >= 7 && i <= 9 ? C.g : null); } dot(w / 2, h / 2, 4, C.b); }
-    if (k === 'names') { const hs = [3, 5, 9, 14, 8, 4, 6, 11, 16]; hs.forEach((n, i) => { for (let j = 0; j < Math.min(n, 6); j++) dot(6 + i * 6.6, h - 6 - j * 8.4, 2.6, i === 8 ? C.g : null); }); }
-  });
-}
-
-/* the big number counts up once on load */
-function countUp() {
-  const el = document.getElementById('count'), target = 15754053;
-  if (reduce) return;
-  const t0 = performance.now(), dur = 1400;
-  const step = now => { const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(target * e).toLocaleString('tr-TR'); if (p < 1) requestAnimationFrame(step); };
-  requestAnimationFrame(step);
-}
-
-function all() { readC(); initField(); drawThumb(); drawMinis(); if (reduce) drawField(); }
-addEventListener('resize', all);
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', all);
-new MutationObserver(all).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-all(); countUp(); if (!reduce) drawField();
+addEventListener('resize', drawThumb); drawThumb();
 </script>
-
 </body>
 </html>
